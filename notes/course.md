@@ -17,3 +17,61 @@
 
 Engine is the connector for everything. When new request is added it is delegated from the engine to the scheduler queue, when it is in line for execution it is passed to the engine and then to the middleware which executes the request. Response is passed to the engine and then to the spider to handle the response and extract data. Extracted data is then sent to the ending which passes it to the pipeline to process the data.
 
+## Shell
+Scrapy shell is started by entering:
+`scrapy shell [url]`
+
+If we can manually fetch target website witch command:
+`fetch(url)` or `r = scrapy.Request(url)`
+
+Then we can checkout the output by typing
+`response.body`
+
+We can preview this in browser by typing
+`view(response)`
+
+We can use xpath to get elements:
+`title = response.xpath("//h1/text()")`
+and then `title.get()` and response will be: 'Countries in the world by population (2020)'
+
+We can also use css to get elements:
+`countries = response.css("td a::text").getall()`
+
+## CSS selectors
+https://try.jsoup.org/
+Examples:
+
+`.some_class` to get all HTML elements with class some_class
+
+`#some_id` to get HTML element with id some_id
+
+`div.some_class` to get all div elements with class some_class
+
+`.bold.italic` to get elements that have n classes (2 in this example)
+
+`li[data-identifier=7]` to get element of specific type with specific atr value more: `a[href^='https']` here is an example for starts with. Ends with: `a[href$='fr/']`, example for in the middle: `a[href*='ps']`
+
+`div.intro p` to get all p's into div with class intro without children, for all the children: `div.intro > p`, to get p immidietly after: `div.intro + p`
+
+`li:nth-child(odd)` get all odd indexed li items
+
+`div ~ p` get all ps that are on some level under div
+
+## XPath fundamentals
+`//div[@class='intro']/p` get p's from divs with class intro.
+
+`//div[@class='intro' or @class='outro' ]/p` get p's from divs with class intro or outro
+
+`//div[@class='intro' or @class='outro' ]/p/text()` like previous but get only values
+
+`//a[starts-with(@href, 'https')]` select a elements where href start with https, there is also `ends-with` and `contains` function.
+
+`//a[contains(text(), 'France')]` there we used text instead of atribute name.
+
+`//ul[@id='items']/li[position() = 4 or position() = 1]` get li from ul with id 'items', get li items with indexes 1 and 4 if they exisit. `//ul[@id='items']/li[position() = 4 or position() = last()]`
+
+`//ul[@id='items']/li[position() > 2]` get elements on indexes greater than 2
+
+`//p[@id='unique']/parent::node()` get parent of the element with id. We can also use ancestor instead of parent or ancestor-or-self or preceding. Preceding is the element on the same depth. We can also use preceding-sibling which will return brother preceding element.
+
+`//div[@class='intro']/child::node()` get all children of div element with class intro. We can use following instead of child or following-sibling or descendant.
