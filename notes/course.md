@@ -75,3 +75,10 @@ Examples:
 `//p[@id='unique']/parent::node()` get parent of the element with id. We can also use ancestor instead of parent or ancestor-or-self or preceding. Preceding is the element on the same depth. We can also use preceding-sibling which will return brother preceding element.
 
 `//div[@class='intro']/child::node()` get all children of div element with class intro. We can use following instead of child or following-sibling or descendant.
+
+## Scraping
+To start a project use the command: `scrapy startproject proj_name`
+
+than `cd proj_name`
+
+than to create a spider: `scrapy genspider spider_name`
