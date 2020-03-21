@@ -82,3 +82,6 @@ To start a project use the command: `scrapy startproject proj_name`
 than `cd proj_name`
 
 than to create a spider: `scrapy genspider spider_name`
+
+To output the results in a file:
+`scrapy crawl crawler_name output_file.[json | csv | xml]`
