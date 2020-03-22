@@ -85,3 +85,13 @@ than to create a spider: `scrapy genspider spider_name`
 
 To output the results in a file:
 `scrapy crawl crawler_name output_file.[json | csv | xml]`
+
+In settings.py we can set export encoding:
+`FEED_EXPORT_ENCODING = 'utf-8'` by adding this line at the end of the file
+
+## Spoofing requests
+In settings.py we can set user agent for a real browser:
+`USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:74.0) Gecko/20100101 Firefox/74.0'`
+
+We can edit mutiple values in header by overwritting `DEFAULT_REQUEST_HEADER` in settings.py
+We can also create start_request method.
