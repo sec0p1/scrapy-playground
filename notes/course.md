@@ -111,3 +111,18 @@ We can log different thigs by importing `import logging` and adding line:
 `logging.info(something)`
 
 We can also debug with brakepoints, in order to achieve that, we need to create runner python file. Take a look at runner.py in gassesshop. From vs code debug that file as a python file and add brakepoints before starting the file.
+
+## CrawlSpider
+Generation command: `scrapy genspider -t crawl best_movies imdb.com`
+
+Rules:
+`rules = (
+        # Extract links matching 'category.php' (but not matching 'subsection.php')
+
+        # and follow links from them (since no callback means follow=True by default).
+        Rule(LinkExtractor(allow=('category\.php', ), deny=('subsection\.php', ))),
+
+        # Extract links matching 'item.php' and parse them with the spider's method parse_item
+        Rule(LinkExtractor(allow=('item\.php', )), callback='parse_item'),
+    )
+`
