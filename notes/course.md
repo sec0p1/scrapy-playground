@@ -95,3 +95,19 @@ In settings.py we can set user agent for a real browser:
 
 We can edit mutiple values in header by overwritting `DEFAULT_REQUEST_HEADER` in settings.py
 We can also create start_request method.
+
+## Debuging
+We can call a spider's method from terminal to check its output
+
+`scrapy parse --spider=countries -c parse_country --meta='{"country_name": "China"}' "https://www.worldometers.info/world-population/china-population"`
+
+We can open scrapy shell in the middle of the execution by importing `from scrapy.shell import inspect_response`
+and adding this line: `inspect_response(response, self)`
+
+We can open in browser by importing: `from scrapy.utils.response import open_in_browser`
+and adding this line: `open_in_browser(response)`
+
+We can log different thigs by importing `import logging` and adding line:
+`logging.info(something)`
+
+We can also debug with brakepoints, in order to achieve that, we need to create runner python file. Take a look at runner.py in gassesshop. From vs code debug that file as a python file and add brakepoints before starting the file.
