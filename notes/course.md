@@ -126,3 +126,13 @@ Rules:
         Rule(LinkExtractor(allow=('item\.php', )), callback='parse_item'),
     )
 `
+
+## Splash
+
+Install docker image:
+
+`sudo docker pull scrapinghub/splash`
+
+Run docker image:
+
+`sudo docker run -it -p 8050:8050 scrapinghub/splash`
