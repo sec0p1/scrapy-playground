@@ -136,3 +136,27 @@ Install docker image:
 Run docker image:
 
 `sudo docker run -it -p 8050:8050 scrapinghub/splash`
+
+To use splash in scrapy, create a project and a spider, and in spider settings.py add:
+
+`SPLASH_URL = "http://localhost:8050/"`
+
+Next, add download middleware for splash:
+
+`DOWNLOADER_MIDDLEWARES = {
+    'scrapy_splash.SplashCookiesMiddleware': 723,
+    'scrapy_splash.SplashMiddleware': 725,
+    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+}
+`
+
+Next, add spider middleware:
+
+`SPIDER_MIDDLEWARES = {
+    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+}
+`
+
+And lastly:
+
+`DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'`
