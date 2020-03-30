@@ -160,3 +160,23 @@ Next, add spider middleware:
 And lastly:
 
 `DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'`
+
+## Selenium
+
+`pip install scrapy-selenium
+`
+
+Add this code to settings.py:
+
+`from shutil import which
+
+SELENIUM_DRIVER_NAME = 'firefox'
+SELENIUM_DRIVER_EXECUTABLE_PATH = which('geckodriver')
+SELENIUM_DRIVER_ARGUMENTS=['-headless']  # '--headless' if using chrome instead of firefox
+`
+
+Add downloader middleware:
+
+`DOWNLOADER_MIDDLEWARES = {
+    'scrapy_selenium.SeleniumMiddleware': 800
+}`
